@@ -4,19 +4,22 @@ import com.amex.ordersservice.model.Order;
 import com.amex.ordersservice.model.Product;
 import com.amex.ordersservice.repository.OrderRepository;
 import com.amex.ordersservice.service.OrderService;
-import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/orders")
-@AllArgsConstructor
 public class OrderController {
     private final OrderService orderService;
     private final OrderRepository orderRepository;
 
     private static Long currentOrderId = 1L;
+
+    public OrderController(OrderService orderService, OrderRepository orderRepository) {
+        this.orderService = orderService;
+        this.orderRepository = orderRepository;
+    }
 
     @PostMapping
     public Order createOrder(@RequestBody List<Product> products) {

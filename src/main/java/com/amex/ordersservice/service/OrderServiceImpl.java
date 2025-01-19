@@ -2,9 +2,11 @@ package com.amex.ordersservice.service;
 
 import com.amex.ordersservice.model.Order;
 import com.amex.ordersservice.model.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrderServiceImpl implements OrderService {
     @Override
     public double calculateTotal(List<Product> products) {
@@ -22,8 +24,8 @@ public class OrderServiceImpl implements OrderService {
         long appleCount = products.stream().filter(p -> p == Product.APPLE).count();
         long orangeCount = products.stream().filter(p -> p == Product.ORANGE).count();
 
-        double appleCost = (((double) appleCount / 2) + (appleCount % 2)) * Product.APPLE.getPrice();
-        double orangeCost = (((double) orangeCount / 3) * 2 + (orangeCount % 3)) * Product.ORANGE.getPrice();
+        double appleCost = ((appleCount / 2) + (appleCount % 2)) * Product.APPLE.getPrice();
+        double orangeCost = ((orangeCount / 3) * 2 + (orangeCount % 3)) * Product.ORANGE.getPrice();
 
         return appleCost + orangeCost;
     }
