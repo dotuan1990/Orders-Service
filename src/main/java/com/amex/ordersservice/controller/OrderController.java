@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/api/v1/orders")
 @AllArgsConstructor
 public class OrderController {
     private final OrderService orderService;
@@ -21,6 +21,12 @@ public class OrderController {
     @PostMapping
     public Order createOrder(@RequestBody List<Product> products) {
         Order order = orderService.createOrder(currentOrderId, products);
+        currentOrderId++;
+        return order;
+    }
+    @PostMapping("/with-offer")
+    public Order createOrderWithOffer(@RequestBody List<Product> products) {
+        Order order = orderService.createOrderWithOffer(currentOrderId, products);
         currentOrderId++;
         return order;
     }

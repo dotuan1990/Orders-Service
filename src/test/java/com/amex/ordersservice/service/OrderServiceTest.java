@@ -16,4 +16,17 @@ public class OrderServiceTest {
         assertEquals(1.45, total);
     }
 
+    @Test
+    void calculateTotalWithOffers_ShouldApplyOffersCorrectly() {
+        double total = orderService.calculateTotalWithOffer(Arrays.asList(
+                Product.APPLE, Product.APPLE, Product.ORANGE, Product.ORANGE, Product.ORANGE));
+        assertEquals(1.10, total);
+    }
+
+    @Test
+    void calculateTotalWithOffersWithOdd_ShouldApplyOffersCorrectly() {
+        double total = orderService.calculateTotalWithOffer(Arrays.asList(
+                Product.APPLE, Product.APPLE,Product.APPLE, Product.ORANGE, Product.ORANGE, Product.ORANGE,Product.ORANGE));
+        assertEquals(1.95, total);
+    }
 }

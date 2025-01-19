@@ -8,6 +8,9 @@ import java.util.List;
 
 @Service
 public interface OrderService {
-    public double calculateTotal(List<Product> products);
-    public Order createOrder(Long id, List<Product> products);
+    double calculateTotal(List<Product> products);
+    Order createOrder(Long id, List<Product> products);
+
+    double calculateTotalWithOffer(List<Product> products);
+    Order createOrderWithOffer(Long id, List<Product> products);
 }
